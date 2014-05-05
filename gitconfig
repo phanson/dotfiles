@@ -1,0 +1,7 @@
+[user]
+	name = Philip Hanson
+	email = philip@cy9.org
+[color]
+	ui = true
+[push]
+	default = simple
