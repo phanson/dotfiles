@@ -1,0 +1,23 @@
+[global_config]
+  enabled_plugins = TerminalShot, LaunchpadCodeURLHandler, APTURLHandler, LaunchpadBugURLHandler
+[keybindings]
+[profiles]
+  [[default]]
+    use_system_font = False
+    font = Monospace 12
+    visible_bell = True
+    background_darkness = 0.84
+    background_type = transparent
+    background_image = None
+    cursor_color = "#e6e6e6"
+    copy_on_selection = True
+    scrollback_infinite = True
+[layouts]
+  [[default]]
+    [[[child1]]]
+      type = Terminal
+      parent = window0
+    [[[window0]]]
+      type = Window
+      parent = ""
+[plugins]
