@@ -28,3 +28,13 @@
 (package-initialize)
 (put 'downcase-region 'disabled nil)
 (put 'upcase-region 'disabled nil)
+
+(defun today ()
+  "Insert string for today's date."
+  (interactive)
+  (insert (format-time-string "%Y-%m-%d")))
+
+(defun head-today ()
+  "Insert Markdown header containing today's date."
+  (interactive)
+  (insert (format-time-string "# %Y-%m-%d")))
