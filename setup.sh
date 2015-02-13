@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-ln -s $(pwd)/emacs ~/.emacs
-ln -s $(pwd)/gitconfig ~/.gitconfig
-ln -s $(pwd)/gitignore_global ~/.gitignore_global
+test -L ~/.emacs || ln -s $(pwd)/emacs ~/.emacs
+test -L ~/.gitconfig || ln -s $(pwd)/gitconfig ~/.gitconfig
+test -L ~/.gitignore_global || ln -s $(pwd)/gitignore_global ~/.gitignore_global
 
 mkdir -p ~/.config/terminator
-ln -s $(pwd)/terminator ~/.config/terminator/config
+test -L ~/.config/terminator/config || ln -s $(pwd)/terminator ~/.config/terminator/config
