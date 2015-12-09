@@ -22,9 +22,8 @@
 (setq visible-bell t)
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 (require 'package)
-(add-to-list 'package-archives
-             '("marmalade" .
-               "http://marmalade-repo.org/packages/"))
+(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/") t)
+(add-to-list 'package-archives '("melpa-stable" . "http://stable.melpa.org/packages/") t)
 (package-initialize)
 (put 'downcase-region 'disabled nil)
 (put 'upcase-region 'disabled nil)
