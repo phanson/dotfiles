@@ -15,6 +15,7 @@
  )
 (setq-default indent-tabs-mode nil)
 (global-linum-mode 1)
+(setq column-number-mode t)
 (menu-bar-mode 0)
 (tool-bar-mode 0)
 (setq initial-scratch-message "")
