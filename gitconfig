@@ -8,6 +8,7 @@
 [core]
 	editor = emacs -nw
 	excludesfile = ~/.gitignore_global
+        abbrev = 12
 [transfer]
 	fsckobjects = true
 [fetch]
