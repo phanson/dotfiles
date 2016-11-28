@@ -40,6 +40,7 @@
 (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 
+(set-default-font "Bitstream Vera Sans Mono")
 (load-theme 'dracula)
 
 (defun today ()
