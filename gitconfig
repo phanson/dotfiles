@@ -9,6 +9,7 @@
 	editor = emacs -nw
 	excludesfile = ~/.gitignore_global
         abbrev = 12
+	autocrlf = input
 [transfer]
 	fsckobjects = true
 [fetch]
