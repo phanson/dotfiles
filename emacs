@@ -29,20 +29,55 @@
 (setq inhibit-startup-message t)
 (setq visible-bell t)
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
+
 (require 'package)
-(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/") t)
-(add-to-list 'package-archives '("melpa-stable" . "http://stable.melpa.org/packages/") t)
+
+; list the packages we want
+(setq package-list '(
+                     dracula-theme
+                     elixir-mode
+                     go-mode
+                     haskell-mode
+                     jq-mode
+                     json-mode
+                     markdown-mode
+                     org
+                     pandoc
+                     puppet-mode
+                     python
+                     ))
+
+; list all package archives directly
+(setq package-archives '(("elpa" . "http://tromey.com/elpa/")
+                         ("gnu" . "http://elpa.gnu.org/packages/")
+                         ("marmalade" . "http://marmalade-repo.org/packages/")))
+
+; activate all packages
 (package-initialize)
+
+; fetch list of available packages
+(unless package-archive-contents
+  (package-refresh-contents))
+
+; install any missing packages
+(dolist (package package-list)
+  (unless (package-installed-p package)
+    (package-install package)))
+
+; enable upcase and downcase commands
 (put 'downcase-region 'disabled nil)
 (put 'upcase-region 'disabled nil)
 
+; autoload Markdown mode
 (autoload 'markdown-mode "markdown-mode" "Major mode for editing Markdown files" t)
 (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 
+; visuals - font and theme
 (set-default-font "Bitstream Vera Sans Mono")
 (load-theme 'dracula)
 
+; custom functions for journaling
 (defun today ()
   "Insert string for today's date."
   (interactive)
