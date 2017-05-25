@@ -1,3 +1,5 @@
+; -*- mode: lisp -*-
+
 (global-set-key [f12] 'compile)
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -8,6 +10,7 @@
    [default default default italic underline success warning error])
  '(ansi-color-names-vector
    ["#242424" "#e5786d" "#95e454" "#cae682" "#8ac6f2" "#333366" "#ccaa8f" "#f6f3e8"])
+ '(browse-url-browser-function (quote browse-url-generic))
  '(custom-enabled-themes (quote (dracula)))
  '(custom-safe-themes
    (quote
@@ -77,6 +80,49 @@
 ; visuals - font and theme
 (set-default-font "Bitstream Vera Sans Mono")
 (load-theme 'dracula)
+
+; org-mode
+(require 'org)
+
+(setq org-directory "~/doc/org")
+(setq org-default-notes-file (concat org-directory "/capture.org"))
+(setq org-journal-file (concat org-directory "/journal.org"))
+
+(global-set-key "\C-cl" 'org-store-link)
+(global-set-key "\C-ca" 'org-agenda)
+(global-set-key "\C-cc" 'org-capture)
+(global-set-key "\C-cb" 'org-iswitchb)
+
+(setq org-log-done t)
+(setq org-agenda-files (list org-directory))
+(setq org-refile-targets `((org-agenda-files :maxlevel . 4)))
+(setq org-capture-templates
+      '(("t" "Todo list item"
+         entry (file+headline org-default-notes-file "Tasks")
+         "* TODO %?\n  %i\n  %a")
+        ("j" "Journal entry"
+         entry (file+datetree org-journal-file)
+         (file "~/.emacs.d/org-templates/journal.orgcaptmpl"))
+        ("m" "MSR entry"
+         entry (file+datetree org-journal-file)
+         (file "~/.emacs.d/org-templates/msr.orgcaptmpl"))
+        ))
+
+; enable org-babel code execution for specific languages
+(require 'ob-sh)      ; shell
+(require 'ob-python)  ; python
+
+; capture shell stderr output
+(setq org-babel-default-header-args:sh
+      '((:prologue . "exec 2>&1")
+        (:epilogue . ":")))
+
+; TRAMP
+(setq tramp-default-method "ssh")
+
+; open links in Chrome
+(setq browse-url-browser-function 'browse-url-generic
+      browse-url-generic-program "google-chrome")
 
 ; custom functions for journaling
 (defun today ()
